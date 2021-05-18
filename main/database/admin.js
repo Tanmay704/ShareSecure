@@ -10,7 +10,6 @@ import { roomSchema as roomdb} from './room.js';
     salt: String,
     rooms: [roomdb]
   });
-  
   adminSchema.plugin(uniqueValidator, {message: 'is already taken.'});
   adminSchema.methods.setPassword = function(password){
      this.salt = crypto.randomBytes(16).toString('hex');
