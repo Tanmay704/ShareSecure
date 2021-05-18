@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 
 const app = express();
+app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 
 // database connection 
@@ -21,11 +22,6 @@ import { adminSchema as admindb } from './database/admin.js';
 
 // testing Admin schema 
    
-   
-
-
-
-
 // routes
 import { router as home } from './routes/home.js';
 import { router as adminlogin } from './routes/adminlogin.js';

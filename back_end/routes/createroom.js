@@ -3,7 +3,7 @@ import express from 'express';
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-  res.send("create room page");
+  res.render("createroom");
 });
 
 export { router };
