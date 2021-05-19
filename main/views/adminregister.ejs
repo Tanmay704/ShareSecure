@@ -8,13 +8,28 @@
         body {
             background-color: skyblue;
             text-decoration-color: white;
-            font-size:7em; 
+          
         }
     </style>
 </head>
   
 <body>
-    <center>Admin Register</center>
+    <form action="adminregister" method="POST">
+        <div>
+            <label for = "name">Enter Name :</label>
+            <input type = "text" id ="name" name = "name" required>
+        </div>
+        <div>
+            <label for = "password">Enter Password</label>
+            <input type = "password" id ="password" name = "password" required>
+        </div>
+        <div>
+            <label for = "password">Confirm Password</label>
+            <input type = "password" id ="cpassword" name = "cpassword" required>
+        </div>
+        <button type = "submit">Submit</button>
+        </form>
 </body>
   
 </html> 
+<a href="/adminlogin">Login</a>

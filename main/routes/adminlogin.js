@@ -2,8 +2,14 @@
 import express from 'express';
 var router = express.Router();
 
+
 router.get('/', function(req, res, next) {
   res.render('adminlogin');
+});
+
+router.post('/', function(req, res, next) {
+
+  res.render('home');
 });
 
 export { router };
