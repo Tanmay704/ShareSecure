@@ -36,38 +36,48 @@ module.exports = function(passport) {
         passwordField : 'password',
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
-    function(req, email, password, done) {
+    function (req, email, password, done) {
+        // asynchronous
+        // User.findOne wont fire unless data is sent back
+            // find a user whose email is the same as the forms email
+            // we are checking to see if the user trying to login already exists
+            User.findOne({'local.email': email}, function (err, user) {
+                // if there are any errors, return the error
+                if (err) {
+                    return done(err);
+                }
 
-		// find a user whose email is the same as the forms email
-		// we are checking to see if the user trying to login already exists
-        User.findOne({ 'local.email' :  email }, function(err, user) {
-            // if there are any errors, return the error
-            if (err)
-                return done(err);
+                // check to see if theres already a user with that email
+                if (user) {
+                    console.log('that email exists');
+                    return done(null, false, req.flash('signupMessage', email + ' is already in use. '));
 
-            // check to see if theres already a user with that email
-            if (user) {
-                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-            } else {
-
-				// if there is no user with that email
-                // create the user
-                var newUser            = new User();
-
-                // set the user's local credentials
-                newUser.local.email    = email;
-                newUser.local.password = newUser.generateHash(password); // use the generateHash function in our user model
-
-				// save the user
-                newUser.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, newUser);
-                });
-            }
-
-        });
-
+                } else {
+                    User.findOne({'local.username': req.body.username}, function (err, user) {
+                        if (user) {
+                            console.log('That username exists');
+                            return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
+                        }
+                        if (req.body.password != req.body.confirm_password) {
+                            console.log('Passwords do not match');
+                            return done(null, false, req.flash('signupMessage', 'Your passwords do not match'));
+                        }
+                        else {
+                            // create the user
+                            var newUser = new User();
+                            newUser.local.username = req.body.username;
+                            newUser.local.email = email;
+                            newUser.local.password = newUser.generateHash(password);
+                            //Verified will get turned to true when they verify email address
+                            newUser.save(function(err) {
+                                if (err)
+                                    throw err;
+                                return done(null, newUser);
+                            });
+                        }
+                    });
+                }
+            });
     }));
 
     // =========================================================================

@@ -4,14 +4,9 @@ const room = require('./room');
   const  Schema  = mongoose.Schema;
   const adminSchema = new Schema({
     local :{
+        username:{type: String},
         password: {type: String},
-        email: {type: String }
-    },
-    google :{
-        id           : String,
-        token        : String,
-        email        : String,
-        name         : String
+        email: {type: String },
     },
     rooms: [room.roomSchema]
   });

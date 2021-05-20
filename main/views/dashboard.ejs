@@ -28,6 +28,7 @@
 
 					<p>
 						<strong>id</strong>: <%= user._id %><br>
+						<strong>Username</strong>: <%= user.username %><br>
 						<strong>email</strong>: <%= user.local.email %><br>
 						<strong>password</strong>: <%= user.local.password %>
                         <% if (user.rooms.length > 0) { %>
