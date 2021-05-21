@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt   = require('bcrypt-nodejs');
-const room = require('./room');
   const  Schema  = mongoose.Schema;
   const adminSchema = new Schema({
     local :{
@@ -8,7 +7,7 @@ const room = require('./room');
         password: {type: String},
         email: {type: String },
     },
-    rooms: [room.roomSchema]
+    rooms: [{ type: Schema.Types.ObjectId, ref: 'Room' }]
   });
   
   adminSchema.methods.generateHash = function(password) {

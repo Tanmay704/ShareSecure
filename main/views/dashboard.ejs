@@ -28,7 +28,7 @@
 
 					<p>
 						<strong>id</strong>: <%= user._id %><br>
-						<strong>Username</strong>: <%= user.username %><br>
+						<strong>Username</strong>: <%= user.local.username %><br>
 						<strong>email</strong>: <%= user.local.email %><br>
 						<strong>password</strong>: <%= user.local.password %>
                         <% if (user.rooms.length > 0) { %>
@@ -45,6 +45,7 @@
                             <% } %>
 					</p>
 
+                    <a href="/createroom" class="btn btn-default"><span class="fa fa-lock"></span>  Create Room</a>
 			</div>
 		</div>
 

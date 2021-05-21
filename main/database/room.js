@@ -1,8 +1,17 @@
 const mongoose = require('mongoose');
   const { Schema } = mongoose;
   const roomSchema = new Schema({
-    
+      admin:{type: Schema.Types.ObjectId, ref: 'Room'},
+      roomname:{type:String},
+      disc:{type:String},
+      visible:{type: Boolean,require: true, default: true},
+      key:{type:String},
+      visiter:[{ type: Schema.Types.ObjectId, ref: 'User' }],
+      file:{
+        type: String,
+        data: Buffer
+      },
+      created:{ type: Date, required: true, default: Date.now }
   });
 
-  const Room = mongoose.model('Room',roomSchema);
-  module.exports =  {Room,roomSchema};
+  module.exports  = mongoose.model('Room',roomSchema);

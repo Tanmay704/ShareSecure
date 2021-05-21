@@ -1,20 +1,41 @@
-<!DOCTYPE html>
+<!-- views/signup.ejs -->
+<!doctype html>
 <html>
-  
 <head>
-    <title>Home Page</title>
-      
-    <style type="text/css" media="screen">
-        body {
-            background-color: skyblue;
-            text-decoration-color: white;
-            font-size:7em; 
-        }
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <style>
+       
     </style>
 </head>
-  
 <body>
-    <center>Create Room</center>
+<div class="container">
+
+<div class="col-sm-6 col-sm-offset-3">
+    <!-- LOGIN FORM -->
+
+    <p><strong>Username</strong>: <%= user.local.username %> .. creating room<br></p>
+    <form action="/createroom" method="post">
+        <div class="form-group">
+            <label>Room Name: </label>
+            <input type="text" class="form-control" name="roomname">
+        </div>
+
+        <div class="form-group">
+            <label>Choose File:</label>
+            <input type="file" class="form-control-file" name="data">
+        </div>
+
+
+        <div class="form-group">
+            <label>Discription:</label>
+            <textarea class="form-control" name="disc" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success ">+ Create</button>
+    </form>
+</div>
+
+</div>
 </body>
-  
-</html> 
+</html>

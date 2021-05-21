@@ -41,7 +41,7 @@ app.use(cookieParser()); // read cookies (needed for auth)
   require('./routes/home.js')(app);
  //const adminlogin  =
   require('./routes/adminlogin.js')(app,passport);
- //const createroom  = require('./routes/createroom.js');
+  require('./routes/createroom.js')(app,passport);
 // const room  = require('./routes/room.js');
 // const userlogin  = require('./routes/userlogin.js');
  //const roomsetting  = require('./routes/roomsetting.js');
@@ -50,14 +50,7 @@ app.use(cookieParser()); // read cookies (needed for auth)
  require('./routes/dashboard.js')(app,passport);
 
 
-// using routes
-//   app.use('/',home);
-//   app.use('/adminlogin',adminlogin);
-//   app.use('/room',room);
-//   app.use('/createroom',createroom);
-//   app.use('/userlogin',userlogin);
-//   app.use('/roomsetting',roomsetting);
-//   app.use('/adminregister',adminregister);
+
   
 // listning local port 
 var port = 3000;

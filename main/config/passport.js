@@ -1,5 +1,4 @@
 var LocalStrategy   = require('passport-local').Strategy;
-
 // load up the user model
 var User        = require('../database/admin');
 
@@ -39,6 +38,13 @@ module.exports = function(passport) {
     function (req, email, password, done) {
         // asynchronous
         // User.findOne wont fire unless data is sent back
+        // Check email existance
+       
+            // emailExistence.check(email, function(res,err){
+            //     console.log('res: '+ res);
+            // });
+      
+
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
             User.findOne({'local.email': email}, function (err, user) {
