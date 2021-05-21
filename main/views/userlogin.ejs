@@ -1,20 +1,27 @@
-<!DOCTYPE html>
+<!-- views/index.ejs -->
+<!doctype html>
 <html>
-  
 <head>
-    <title>Home Page</title>
-      
-    <style type="text/css" media="screen">
-        body {
-            background-color: skyblue;
-            text-decoration-color: white;
-            font-size:7em; 
-        }
-    </style>
+	<title>Node Authentication</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<style>
+	</style>
 </head>
-  
 <body>
-    <center>User login</center>
+<div class="container">
+
+	<div class="jumbotron text-center">
+		<h4><span class="fa fa-lock"></span> Authenticate</h4>
+        <form action="/userlogin" method="post">
+            <div class="form-group">
+                <label>Key:</label>
+                <input type="text" class="form-control" name="key">
+            </div>
+            <button type="submit" class="btn btn-warning">Proceeed -> </button>
+        </form>
+	</div>
+    <p>Or go <a href="/">home</a>.</p>
+</div>
 </body>
-  
-</html> 
+</html>

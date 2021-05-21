@@ -48,10 +48,7 @@ app.use(cookieParser()); // read cookies (needed for auth)
  //const adminregister  = 
  require('./routes/adminregister.js')(app,passport);
  require('./routes/dashboard.js')(app,passport);
-
-
-
-  
+ require('./routes/userlogin.js')(app);
 // listning local port 
 var port = 3000;
 app.listen(port||3000,function(){
