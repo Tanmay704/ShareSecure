@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 	<style>
-		body 		{ padding-top:80px; word-wrap:break-word; }
+		body 		{ word-wrap:break-word; }
 	</style>
 </head>
 <body>
@@ -35,8 +35,8 @@
                         <table>
                             <% for(var i=0; i < user.rooms.length; i++) { %>
                                <tr>
-                                 <td><%= user.rooms[i].id %></td>
-                                 <td><%= user.rooms[i].name %></td>
+                                 <td style="padding: 3px;"><%= user.rooms[i].roomname %></td>
+                                 <td style="padding: 3px;"><%= user.rooms[i].key %></td>
                                </tr>
                             <% } %>
                             </table>

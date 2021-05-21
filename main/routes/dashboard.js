@@ -1,8 +1,22 @@
+const admin = require('../database/admin');
+const adminModel = require('../database/admin');
 module.exports = function(router , passport){
+    
+  
     router.get('/dashboard', isLoggedIn, function(req, res) {
-        res.render('dashboard.ejs', {
-            user : req.user // get the user out of session and pass to template
-        });
+        adminModel.findOne(
+            { _id:req.user._id},
+             (err, data) => {
+              if (err) {
+               res.status(422).send("Our fault");
+              }
+               data.populate("rooms").execPopulate(() => {
+                res.render('dashboard.ejs', {
+                    user : data
+                });
+              });
+             }
+           );
     });
     
     

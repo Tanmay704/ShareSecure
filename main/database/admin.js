@@ -7,7 +7,7 @@ const bcrypt   = require('bcrypt-nodejs');
         password: {type: String},
         email: {type: String },
     },
-    rooms: [{ type: Schema.Types.ObjectId, ref: 'Room' }]
+    rooms: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Room' }]
   });
   
   adminSchema.methods.generateHash = function(password) {

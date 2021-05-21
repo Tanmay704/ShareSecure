@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
   const { Schema } = mongoose;
   const roomSchema = new Schema({
-      admin:{type: Schema.Types.ObjectId, ref: 'Room'},
+      admin:{type: mongoose.Schema.Types.ObjectId, ref: 'Admin'},
       roomname:{type:String},
       disc:{type:String},
       visible:{type: Boolean,require: true, default: true},
       key:{type:String},
-      visiter:[{ type: Schema.Types.ObjectId, ref: 'User' }],
+      visiter:[{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
       file:{
         type: String,
         data: Buffer
