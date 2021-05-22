@@ -2,7 +2,7 @@
 const roomModel = require('../database/room');
 module.exports = function(router){
 router.get('/userlogin', function(req, res, next) {
-  res.render('userlogin.ejs',{ message: req.flash('roomMessage') });
+  res.render('userlogin.ejs',{ message:'' });
 });
 
 
@@ -13,7 +13,8 @@ router.post('/userlogin', function(req, res, next) {
           return errorHandler;
         } else {
           if(!room){
-            res.render('userlogin.ejs',{ message: req.flash('roomMessage', 'key' + ' is not valid. ')})
+
+            res.render('userlogin.ejs',{ message: 'Enter a valid key ...'})
           }else{
             room.populate("admin").execPopulate(()=>{
               res.render('room.ejs', {
