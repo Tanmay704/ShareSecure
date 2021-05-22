@@ -1,30 +1,47 @@
 const errorHandler = require('errorhandler');
-const bcrypt   = require('bcrypt-nodejs');
 var randomstring = require("randomstring");
+var fs = require('fs');
+var path = require('path');
+var multer = require('multer');
+const mongooseUniqueValidator = require('mongoose-unique-validator');
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/uploads')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now())
+    }
+});
+var upload = multer({ storage: storage });
+
+
+
 module.exports = function(router , passport){
     router.get('/createroom', isLoggedIn, function(req, res) {
         res.render('createroom.ejs', {
             user : req.user // get the user out of session and pass to template
         });
     });
-    router.post('/createroom',isLoggedIn, function(req, res){
+    router.post('/createroom',isLoggedIn, upload.single('file') ,function(req, res){
         const admin = req.user;
         const roomdetail = req.body;
-        //find admin 
-        //create room
-        //add room
-        //create key for room
-        // show room to dashboard with key 
         const roomModel = require('../database/room');
         const adminModel = require('../database/admin');
-        var room = new roomModel();
-        room.roomname = roomdetail.roomname;
-        room.disc = roomdetail.disc;
-        room.key = randomstring.generate({
+        var newkey = randomstring.generate({
                      length: 12,
                      charset: 'alphabetic'
                    });
-        room.admin = admin._id;
+        // add code to store file 
+        var buffer = fs.readFileSync(path.join(__dirname , '../public/uploads/' + req.file.filename ));
+        
+        var room = new roomModel( {
+          admin:admin._id,
+          roomname:roomdetail.roomname,
+          disc: roomdetail.disc,
+          key:newkey,
+          data: buffer,
+          type: 'image/png'
+        });
         room.save(function(err,data){
             if(err) return errorHandler(err);
             else{
@@ -32,6 +49,7 @@ module.exports = function(router , passport){
                        if(err) return errorHandler;
                        else{
                            doc.rooms.push(data._id);
+                           console.log(data);
                            doc.save();
                        }
                 });

@@ -10,9 +10,11 @@
 </head>
 <body>
 <div class="container">
-
+    <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
 	<div class="jumbotron text-center">
-		<h4><span class="fa fa-lock"></span> Authenticate</h4>
+		<h1><span class="fa fa-lock"></span> Authenticate</h1>
         <form action="/userlogin" method="post">
             <div class="form-group">
                 <label>Key:</label>

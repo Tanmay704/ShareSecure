@@ -6,11 +6,13 @@ const flash = require('connect-flash');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-
+const path = require('path');
 const app = express();
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.set("views", path.join(__dirname, "views"));
 
 // database connection 
 

@@ -17,7 +17,7 @@
     <h3><span class="fa fa-sign-in"></span> Signup</h3>
 
     <!-- show any messages that come back with authentication -->
-    <% if (message.length > 0) { %>
+    <% if (typeof message !== 'undefined' && message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
     <% } %>
 
@@ -26,6 +26,11 @@
         <div class="form-group">
             <label>Username</label>
             <input type="text" class="form-control" name="username">
+            <% if(typeof error !== 'undefined' && error.username) { %>
+                <p><%= error.username.msg %></p>
+             <% }else{ %>
+                <p> Special Char Not Allowed</p>
+                <% } %>  
         </div>
         <div class="form-group">
             <label>Email</label>
@@ -34,6 +39,12 @@
         <div class="form-group">
             <label>Password</label>
             <input type="password" class="form-control" name="password">
+            <% if(typeof error !== 'undefined' && error.password) { %>
+                <p><%= error.password.msg %></p>
+             <% }else{ %>
+                <p>Please Enter The Strong Password Having Special Char,Number,Lwrcase,Uprcase</p>
+                <% } %>  
+    
         </div>
         <div class="form-group">
             <label>Confirm Password</label>

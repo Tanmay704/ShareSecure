@@ -1,20 +1,29 @@
-<!DOCTYPE html>
+<!-- views/index.ejs -->
+<!doctype html>
 <html>
-  
 <head>
-    <title>Home Page</title>
-      
-    <style type="text/css" media="screen">
-        body {
-            background-color: skyblue;
-            text-decoration-color: white;
-            font-size:7em; 
-        }
-    </style>
+	<title>Node Authentication</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<style>
+	</style>
 </head>
-  
 <body>
-    <center>Room REad only</center>
+<div class="container">
+    <div>
+        <p>
+            <strong>Room Name</strong>: <%= myroom.roomname %><br>
+            <strong>Discription</strong>: <%= myroom.disc %><br>
+            <strong>Created On</strong>: <%= myroom.created %><br>
+            <strong>Admin of Room</strong>: <%= myroom.admin.local.username %>
+        </p>
+    </div>
+	<center>
+        <img src="data:myroom/<%=myroom.data.contentType%>;base64,
+        <%=myroom.data.toString('base64')%>" width="250" height="300">
+
+    <p>Or go <a href="/">home</a>.</p>
+    </center>
+</div>
 </body>
-  
-</html> 
+</html>

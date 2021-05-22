@@ -16,7 +16,7 @@
     <!-- LOGIN FORM -->
 
     <p><strong>Username</strong>: <%= user.local.username %> .. creating room<br></p>
-    <form action="/createroom" method="post">
+    <form action="/createroom" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label>Room Name: </label>
             <input type="text" class="form-control" name="roomname">
@@ -24,7 +24,7 @@
 
         <div class="form-group">
             <label>Choose File:</label>
-            <input type="file" class="form-control-file" name="data">
+            <input type="file" class="form-control-file" id="upload_file" name = "file">
         </div>
 
 
