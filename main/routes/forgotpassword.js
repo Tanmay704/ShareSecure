@@ -20,7 +20,7 @@ module.exports = function (router) {
   // Step 3
 
   router.get("/forgotpassword", function (req, res, next) {
-    res.render("forgotpassword.ejs");
+    res.render("forgotpassword.ejs",{message:''});
   });
 
   router.post("/forgotpassword", function (req, res, next) {
@@ -35,7 +35,8 @@ module.exports = function (router) {
       // check to see if theres already a user with that email
       if (!user) {
         console.log("that email do not exists");
-        return done(null, false, req.flash(email + " does not exists "));
+        res.render("forgotpassword.ejs",{message:email + ' does not exists'});
+        return ;
       }
 
       //user exist and now create a ont time link for 15 mins
@@ -61,7 +62,7 @@ module.exports = function (router) {
         return log("Email sent!!!");
       });
 
-      res.send("password reset link has been sent to ur email....");
+      res.send("password reset link has been sent to ur email.... ");
     });
   });
 };

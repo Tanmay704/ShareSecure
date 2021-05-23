@@ -41,7 +41,7 @@ module.exports = function(router , passport){
           disc: roomdetail.disc,
           key:newkey,
         });
-        room.data = room.encryptBuffer(buffer,admin.local.password);
+        room.data = room.encryptBuffer(buffer,admin.local.email);
         room.type = 'image/png';
         // removing file 
         try {

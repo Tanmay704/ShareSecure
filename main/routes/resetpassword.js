@@ -21,7 +21,8 @@ module.exports = function (router) {
       // check to see if theres already a user with that email
       if (!user) {
         console.log("that username do not exists");
-        return done(null, false, req.flash(username + " does not exists "));
+        res.render("forgotpassword.ejs",{ message: 'email not matched'});
+        return;
       }
 
       const secret = JWT_SECRET + user.local.password;
@@ -53,7 +54,8 @@ module.exports = function (router) {
       // check to see if theres already a user with that email
       if (!user) {
         console.log("that username do not exists");
-        return done(null, false, req.flash(username + " does not exists "));
+        res.render("forgotpassword.ejs",{ message: 'user not exist'});
+        return;
       }
 
       const secret = JWT_SECRET + user.local.password;
@@ -65,6 +67,7 @@ module.exports = function (router) {
         const payload = jwt.verify(token, secret);
         //validate password and password2 should match
         if (password != password2) {
+
           res.send("password does not match!!!");
           return;
         }
@@ -88,7 +91,8 @@ module.exports = function (router) {
             if (err) {
               console.log("Something wrong when updating data!");
             }
-            res.send("Your Password is successfully updated");
+             res.render("adminlogin.ejs",{ message: 'Reset password sucessful...'});
+             return;
           }
         );
       } catch (error) {

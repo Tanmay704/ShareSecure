@@ -18,7 +18,7 @@ router.post('/userlogin', function(req, res, next) {
           }else{
               room.populate("admin").execPopulate(()=>{
               res.render('room.ejs', {
-                myroom : room , img : room.decryptBuffer(room.data,room.admin.local.password)
+                myroom : room , img : room.decryptBuffer(room.data,room.admin.local.email)
               });
             });
           }
