@@ -16,9 +16,9 @@ router.post('/userlogin', function(req, res, next) {
 
             res.render('userlogin.ejs',{ message: 'Enter a valid key ...'})
           }else{
-            room.populate("admin").execPopulate(()=>{
+              room.populate("admin").execPopulate(()=>{
               res.render('room.ejs', {
-                myroom : room
+                myroom : room , img : room.decryptBuffer(room.data,room.admin.local.password)
               });
             });
           }

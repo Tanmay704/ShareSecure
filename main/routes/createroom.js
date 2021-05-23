@@ -4,6 +4,7 @@ var fs = require('fs');
 var path = require('path');
 var multer = require('multer');
 const mongooseUniqueValidator = require('mongoose-unique-validator');
+const room = require('../database/room');
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'public/uploads')
@@ -33,15 +34,23 @@ module.exports = function(router , passport){
                    });
         // add code to store file 
         var buffer = fs.readFileSync(path.join(__dirname , '../public/uploads/' + req.file.filename ));
-        
+        // delete file 
         var room = new roomModel( {
           admin:admin._id,
           roomname:roomdetail.roomname,
           disc: roomdetail.disc,
           key:newkey,
-          data: buffer,
-          type: 'image/png'
         });
+        room.data = room.encryptBuffer(buffer,admin.local.password);
+        room.type = 'image/png';
+        // removing file 
+        try {
+            fs.unlinkSync(path.join(__dirname , '../public/uploads/' + req.file.filename ));
+            //file removed
+          } catch(err) {
+            console.error(err);
+          }
+        // removed file 
         room.save(function(err,data){
             if(err) return errorHandler(err);
             else{
@@ -49,7 +58,6 @@ module.exports = function(router , passport){
                        if(err) return errorHandler;
                        else{
                            doc.rooms.push(data._id);
-                           console.log(data);
                            doc.save();
                        }
                 });
