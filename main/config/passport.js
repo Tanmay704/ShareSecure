@@ -1,6 +1,7 @@
 var LocalStrategy   = require('passport-local').Strategy;
 // load up the user model
 var User        = require('../database/admin');
+var Visiter = require('../database/user');
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
@@ -22,6 +23,26 @@ module.exports = function(passport) {
             done(err, user);
         });
     });
+
+//// google authentication ........
+
+const GoogleStrategy = require('passport-google-oauth20');
+
+
+passport.use(new GoogleStrategy({
+    clientID: '654800670081-b22di3uiam2enmi1v8e67j4s6n787nhg.apps.googleusercontent.com',
+    clientSecret:  'ZmeUfJpmeD76C4BK-29EZltI',
+    callbackURL: "http://localhost:3000/google/userlogin",
+  },
+
+function(accessToken, refreshToken, profile, cb) {
+    console.log(profile.displayName + " " + profile.emails[0].value);
+    Visiter.findOrCreate({ googleId: profile.id , username:profile.displayName, email:profile.emails[0].value}, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
+
 
  	// =========================================================================
     // LOCAL SIGNUP ============================================================

@@ -15,7 +15,7 @@
     <% } %>
 	<div class="jumbotron text-center">
 		<h1><span class="fa fa-lock"></span> Authenticate</h1>
-        <form action="/userlogin" method="post">
+        <form action="/room/visiter/<%= visiter %>" method="POST">
             <div class="form-group">
                 <label>Key:</label>
                 <input type="text" class="form-control" name="key">

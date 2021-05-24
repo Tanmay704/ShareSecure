@@ -1,0 +1,53 @@
+<!-- views/index.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>Node Authentication</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<style>
+	</style>
+</head>
+<body>
+<div class="container">
+        <h3>Update room</h3>
+        <form action="/room/update/<%= myroom._id %>" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>Room Name: </label>
+                <input type="text" class="form-control" name="roomname">
+            </div>
+    
+            <div class="form-group">
+                <label>Choose File:</label>
+                <input type="file" class="form-control-file" id="upload_file" name = "file">
+            </div>
+    
+            <div class="form-group">
+                <label>Discription:</label>
+                <textarea class="form-control" name="disc" rows="4"></textarea>
+            </div>
+
+            <% if(myroom.visible === true){ %>
+                <div class="form-group">
+                    <label>Disable Room:</label>
+                    <input type="checkbox" name="disable" value="disableroom" >
+                </div>
+            <%} else { %>
+                <div class="form-group">
+                    <label>Enable Room:</label>
+                    <input type="checkbox" name="enable" value="enableroom">
+                </div>
+            <%}  %>
+
+            <div class="form-group">
+                <label>Change Key:</label>
+                <input type="checkbox" name="changekey" value="changekey">
+            </div>
+
+            <button type="submit" class="btn btn-success ">Applay Changes</button>
+        </form>
+    <p>Or go <a href="/">home</a>.</p>
+    
+  </div>
+</body>
+</html>

@@ -25,44 +25,21 @@
 
         <img src="data:img/<%=img.contentType%>;base64,
         <%=img.toString('base64')%>" width="250" height="300" onContextMenu="return false;">
-
+        <hr><br>
+        <td><a class="btn btn-raised btn-success " href="/room/update/<%= myroom._id %>">Settings</a>
+        <h3>Visiters </h3>
+        <% if(myroom.visiters.length > 0){ %>
+           <%  for(var i=myroom.visiters.length-1; i >= 0; i--) { %>
+            <strong>Visiter</strong>: <%= myroom.visiters[i].username%>
+            <strong>email</strong>: <%= myroom.visiters[i].email%>
+            <strong>date/time</strong>: <%= myroom.visiters[i].visited%>
+            <br>
+            <% } %>
+         <%} else { %>
+            <strong>No Visiters</strong><br>
+         <%}  %>
         <hr>
-        <h3>Update room</h3>
-        <form action="/room/update/<%= myroom._id %>" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label>Room Name: </label>
-                <input type="text" class="form-control" name="roomname">
-            </div>
-    
-            <div class="form-group">
-                <label>Choose File:</label>
-                <input type="file" class="form-control-file" id="upload_file" name = "file">
-            </div>
-    
-            <div class="form-group">
-                <label>Discription:</label>
-                <textarea class="form-control" name="disc" rows="4"></textarea>
-            </div>
-
-            <% if(myroom.visible === true){ %>
-                <div class="form-group">
-                    <label>Disable Room:</label>
-                    <input type="checkbox" name="disable" value="disableroom" >
-                </div>
-            <%} else { %>
-                <div class="form-group">
-                    <label>Enable Room:</label>
-                    <input type="checkbox" name="enable" value="enableroom">
-                </div>
-            <%}  %>
-
-            <div class="form-group">
-                <label>Change Key:</label>
-                <input type="checkbox" name="changekey" value="changekey">
-            </div>
-
-            <button type="submit" class="btn btn-success ">Update</button>
-        </form>
+        
     <p>Or go <a href="/">home</a>.</p>
     
 </div>

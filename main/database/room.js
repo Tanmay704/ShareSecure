@@ -7,10 +7,10 @@ const crypto = require('crypto');
       disc:{type:String},
       visible:{type: Boolean,require: true, default: true},
       key:{type:String},
-      visiter:[{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+      visiters:[{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
       type: String,
       data: Buffer,
-      created:{ type: Date, required: true, default: Date.now }
+      created:{ type: Date, required: true, default: Date.now, timezone: 'Asia/Calcutta' }
   });
  
   roomSchema.methods.encryptBuffer = function(buffer,key) {

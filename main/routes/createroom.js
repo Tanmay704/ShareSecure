@@ -104,7 +104,9 @@ module.exports = function(router , passport){
               if(!room){
                 res.send('room does not exists');
               }else{
-                  room.populate("admin").execPopulate(()=>{
+                  room.populate("admin").populate("visiters").execPopulate(()=>{
+                    console.log("new msg " + room.admin.local.email);
+                    
                   res.render('roomsetting.ejs', {
                     myroom : room , img : room.decryptBuffer(room.data,room.admin.local.email)
                   });
@@ -113,7 +115,17 @@ module.exports = function(router , passport){
             }
         });
     });
-
+    router.get('/room/update/:roomid',isLoggedIn,function(req,res){
+            roomModel.findOne({_id:req.params.roomid},function(err,room){
+              if(err){
+                return errorHandler;
+               }
+               if(!room){
+                res.send('room does not exists');
+               }
+               res.render("roomupdate.ejs",{myroom:room});
+            });
+    });
     router.post('/room/update/:roomid',isLoggedIn,upload.single('file'),function(req,res){
            const data = req.body;
            roomModel.findOne({_id : req.params.roomid},function(err,room){
