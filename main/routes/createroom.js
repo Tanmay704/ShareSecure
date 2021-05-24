@@ -3,8 +3,9 @@ var randomstring = require("randomstring");
 var fs = require('fs');
 var path = require('path');
 var multer = require('multer');
-const mongooseUniqueValidator = require('mongoose-unique-validator');
-const room = require('../database/room');
+//const mongooseUniqueValidator = require('mongoose-unique-validator');
+const roomModel = require('../database/room');
+const adminModel = require('../database/admin');
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'public/uploads')
@@ -65,7 +66,98 @@ module.exports = function(router , passport){
         });
         res.redirect('/dashboard');
     });
-    
+    router.use( function( req, res, next ) {
+        if ( req.query._method == 'DELETE' ) {
+            req.method = 'DELETE';
+            req.url = req.path;
+        } 
+        next(); 
+    });
+    router.delete('/room/delete/:roomid/:adminid',isLoggedIn,function(req,res){
+         const roomid = req.params.roomid;
+         const adminid = req.params.adminid;
+         // find the room ...
+         // from user rooms list remove the id 
+         //redirect to dashboard with update
+         roomModel.findOneAndDelete({_id:roomid}, function(err,room){
+                  if(err){
+                      res.send(err);
+                  }
+                  console.log(roomid + 'deleted');
+         });
+          adminModel.findById(adminid,function(err,admin){
+                    if(err){
+                        res.send(err);
+                    }
+                   admin.rooms.pull(roomid);
+                   admin.save();
+                   res.redirect('/dashboard');
+          });
+          //
+    });
+
+    router.get('/room/view/:roomid',isLoggedIn,function(req,res){
+        roomModel.findOne({ _id :req.params.roomid}, function(err, room) {
+            if (err) {
+              return errorHandler;
+            } else {
+              if(!room){
+                res.send('room does not exists');
+              }else{
+                  room.populate("admin").execPopulate(()=>{
+                  res.render('roomsetting.ejs', {
+                    myroom : room , img : room.decryptBuffer(room.data,room.admin.local.email)
+                  });
+                });
+              }
+            }
+        });
+    });
+
+    router.post('/room/update/:roomid',isLoggedIn,upload.single('file'),function(req,res){
+           const data = req.body;
+           roomModel.findOne({_id : req.params.roomid},function(err,room){
+               if(err){
+                return errorHandler;
+               }
+               if(!room){
+                res.send('room does not exists');
+               }
+                room.populate("admin").execPopulate(()=>{
+               if(data.roomname){
+                 room.roomname = data.roomname;
+               }
+               if(data.disc){
+                room.disc = data.disc;
+               }
+               if(req.file){
+                var buffer = fs.readFileSync(path.join(__dirname , '../public/uploads/' + req.file.filename ));
+                room.data = room.encryptBuffer(buffer,room.admin.local.email);
+                room.type = 'image/png';
+                  try {
+                      fs.unlinkSync(path.join(__dirname , '../public/uploads/' + req.file.filename ));
+                    //file removed
+                    } catch(err) {
+                      console.error(err);
+                  }
+               }
+               if(data.disable){
+                 room.visible = false;
+               }
+               if(data.enable){
+                room.visible = true;
+              }
+               if(data.changekey){
+                room.key =  randomstring.generate({
+                             length: 12,
+                             charset: 'alphabetic'
+                            });
+               }
+               room.save();
+              });
+         });
+           res.redirect('/dashboard');
+    });    
 }
 
 function isLoggedIn(req, res, next) {
