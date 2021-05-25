@@ -8,8 +8,6 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
-const http = require("http").createServer(app);
-const io = require("socket.io")(http);
 
 
 
