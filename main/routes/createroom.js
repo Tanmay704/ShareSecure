@@ -36,11 +36,14 @@ module.exports = function(router , passport){
         // add code to store file 
         var buffer = fs.readFileSync(path.join(__dirname , '../public/uploads/' + req.file.filename ));
         // delete file 
+        var newlimit = 100;
+        if(roomdetail.limit) newlimit = roomdetail.limit;
         var room = new roomModel( {
           admin:admin._id,
           roomname:roomdetail.roomname,
           disc: roomdetail.disc,
           key:newkey,
+          limit:newlimit
         });
         room.data = room.encryptBuffer(buffer,admin.local.email);
         room.type = 'image/png';
@@ -138,6 +141,9 @@ module.exports = function(router , passport){
                 room.populate("admin").execPopulate(()=>{
                if(data.roomname){
                  room.roomname = data.roomname;
+               }
+               if(data.limit){
+                 room.limit = data.limit;
                }
                if(data.disc){
                 room.disc = data.disc;

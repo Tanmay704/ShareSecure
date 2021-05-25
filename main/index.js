@@ -8,6 +8,10 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
+const http = require("http").createServer(app);
+const io = require("socket.io")(http);
+
+
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -57,6 +61,10 @@ require("./routes/userlogin.js")(app);
 require("./routes/forgotpassword.js")(app);
 require("./routes/resetpassword.js")(app);
 // listning local port
+
+
+
+
 var port = 3000;
 app.listen(port || 3000, function () {
   console.log("Running on Port " + port);

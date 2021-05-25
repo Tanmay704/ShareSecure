@@ -10,6 +10,7 @@ const crypto = require('crypto');
       visiters:[{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
       type: String,
       data: Buffer,
+      limit: {type:Number , min: 1, max: 1000, default:100},
       created:{ type: Date, required: true, default: Date.now, timezone: 'Asia/Calcutta' }
   });
  

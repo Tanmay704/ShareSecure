@@ -44,6 +44,12 @@
                 <input type="checkbox" name="changekey" value="changekey">
             </div>
 
+            <div class="form-group">
+                <label>Visiter Limit:</label>
+                <input type="number" class="form-control" name="limit" min = "<%= myroom.visiters.length %>"  max = "1000" placeholder="<%= myroom.visiters.length %>" >
+                 current visiters count: <%= myroom.visiters.length %> / <%= myroom.limit %>
+            </div>
+
             <button type="submit" class="btn btn-success ">Applay Changes</button>
         </form>
     <p>Or go <a href="/">home</a>.</p>
