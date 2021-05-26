@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const crypto = require('crypto');
+require('dotenv').config();
   const roomSchema = new Schema({
       admin:{type: mongoose.Schema.Types.ObjectId, ref: 'Admin'},
       roomname:{type:String},
@@ -15,13 +16,13 @@ const crypto = require('crypto');
   });
  
   roomSchema.methods.encryptBuffer = function(buffer,key) {
-    var cipher = crypto.createCipher('aes-256-ctr',key);
+    var cipher = crypto.createCipher(process.env.CryptoAlgo,key);
     var crypted = Buffer.concat([cipher.update(buffer),cipher.final()]);
   return crypted;
   };
 
   roomSchema.methods.decryptBuffer = function(buffer,key) {
-    var decipher = crypto.createDecipher('aes-256-ctr',key);
+    var decipher = crypto.createDecipher(process.env.CryptoAlgo,key);
     var dec = Buffer.concat([decipher.update(buffer) , decipher.final()]);
   return dec;
   };

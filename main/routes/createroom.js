@@ -3,6 +3,7 @@ var randomstring = require("randomstring");
 var fs = require('fs');
 var path = require('path');
 var multer = require('multer');
+require('dotenv').config();
 //const mongooseUniqueValidator = require('mongoose-unique-validator');
 const roomModel = require('../database/room');
 const adminModel = require('../database/admin');
@@ -39,11 +40,11 @@ module.exports = function(router , passport){
         var newlimit = 100;
         if(roomdetail.limit) newlimit = roomdetail.limit;
         var room = new roomModel( {
-          admin:admin._id,
-          roomname:roomdetail.roomname,
-          disc: roomdetail.disc,
-          key:newkey,
-          limit:newlimit
+           admin:admin._id,
+           roomname:roomdetail.roomname,
+           disc: roomdetail.disc,
+           key:newkey,
+           limit:newlimit
         });
         room.data = room.encryptBuffer(buffer,admin.local.email);
         room.type = 'image/png';
@@ -108,8 +109,6 @@ module.exports = function(router , passport){
                 res.send('room does not exists');
               }else{
                   room.populate("admin").populate("visiters").execPopulate(()=>{
-                    console.log("new msg " + room.admin.local.email);
-                    
                   res.render('roomsetting.ejs', {
                     myroom : room , img : room.decryptBuffer(room.data,room.admin.local.email)
                   });
@@ -179,7 +178,6 @@ module.exports = function(router , passport){
 }
 
 function isLoggedIn(req, res, next) {
-
     // if user is authenticated in the session, carry on 
     if (req.isAuthenticated())
         return next();
