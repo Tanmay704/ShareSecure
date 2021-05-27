@@ -35,7 +35,7 @@ module.exports = function (router) {
          username: user.local.username,
       };
       const token = jwt.sign(payload, secret, { expiresIn: "15m" });
-      const callback = process.env.ResetPassCallback;
+      const callback = 'https://localhost:3000/resetpassword/';
       const link = callback+`${user.local.username}/${token}`;
       console.log(link);
       let mailOptions = {

@@ -17,12 +17,13 @@
     <!-- load fontawesome -->
      <link rel="stylesheet" href="./uploads/adminlogin.css"> 
   </head>
+  
   <body>
     <section class="landing-page">
     <div class="container">
       <div class="pos">
       <div class="col-sm-6 col-sm-offset-3">
-        <h3 style="color: white"><span style="color:bisque" class ="fa fa-sign-in"></span> Login</h3>
+        <h3 style="color: white"><span style="color:bisque" class ="fa fa-sign-in"></span> <b>Login</b></h3>
         
         <!-- show any messages that come back with authentication -->
         <% if (message.length > 0) { %>
@@ -45,7 +46,7 @@
 
         <hr />
         <p><a href="/forgotpassword">Forgot password?</a></p>
-        <p style="color: white;"><b>Need an account? </b><a href="/adminregister">Signup</a></p>
+        <p style="color: white;"><b>Need an account?</b><a href="/adminregister">Signup</a></p>
         <p style="color: white;"><b>Or Go </b><a href="/">Home</a>.</p>
       </div>
       </div>

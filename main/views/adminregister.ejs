@@ -5,16 +5,19 @@
     <title>Node Authentication</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
+    <link rel="stylesheet" href="./uploads/adminlogin.css"> 
+   <style>
      
     </style>
 </head>
 <body>
-<div class="container">
+    <section class="landing-page">
+    <div class="container">
+    
 
-<div class="col-sm-6 col-sm-offset-3">
+    <div class="col-sm-6 col-sm-offset-3">
 
-    <h3><span class="fa fa-sign-in"></span> Signup</h3>
+        <h3 style="color: white"><span style="color:bisque" class ="fa fa-sign-in"></span><b> SignUp</b></h3>
 
     <!-- show any messages that come back with authentication -->
     <% if (typeof message !== 'undefined' && message.length > 0) { %>
@@ -24,42 +27,46 @@
     <!-- LOGIN FORM -->
     <form action="/adminregister" method="post">
         <div class="form-group">
-            <label>Username</label>
+            <label style="color: white">Username</label>
             <input type="text" class="form-control" name="username">
             <% if(typeof error !== 'undefined' && error.username) { %>
                 <p><%= error.username.msg %></p>
-             <% }else{ %>
-                <p> Special Char Not Allowed</p>
-                <% } %>  
+             <% } %>
+              
         </div>
         <div class="form-group">
-            <label>Email</label>
-            <input type="email" class="form-control" name="email">
+            <label style="color: white">Email</label>
+            <input  type="email" class="form-control" name="email">
         </div>
         <div class="form-group">
-            <label>Password</label>
+            <label style="color: white">Password</label>
             <input type="password" class="form-control" name="password">
             <% if(typeof error !== 'undefined' && error.password) { %>
                 <p><%= error.password.msg %></p>
-             <% }else{ %>
-                <p>Please Enter The Strong Password Having Special Char,Number,Lwrcase,Uprcase</p>
-                <% } %>  
+             <% } %>
+                
     
         </div>
         <div class="form-group">
-            <label>Confirm Password</label>
+            <label style="color: white">Confirm Password</label>
             <input type="password" class="form-control" name="confirm_password">
         </div>
-        <button type="submit" class="btn btn-warning ">Signup</button>
+        <button type="submit"  class="btn btn-outline-success">Signup</button>
     </form>
 
     <hr>
 
-    <p>Already have an account? <a href="/adminlogin">Login</a></p>
-    <p>Or go <a href="/">home</a>.</p>
+    <p style="color: white"><b>Already have an account? </b><a href="/adminlogin">Login</a></p>
+    <p style="color: white"><b>Or Go </b><a href="/"> Home</a>.</p>
 
 </div>
-
 </div>
+</div>
+
+        <img src="./uploads/images/liq-1.png" alt="" class="blob blob-1 hue-shift">
+        <img src="./uploads/images/liq-2.png" alt="" class="blob blob-2 hue-shift">
+        <img src="./uploads/images/liq-3.png" alt="" class="blob blob-3 hue-shift">
+        <img src="./uploads/images/liq-6.png" alt="" class="blob blob-4 hue-shift">
+</section>
 </body>
 </html>
