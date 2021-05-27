@@ -1,0 +1,62 @@
+
+/*Base*/
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html{
+	font-size: 62.5%;
+}
+/*Main content*/
+.landing-page{
+    top: 0;
+	width: 100%;
+	min-height: 100vh;
+	background-image: linear-gradient(to bottom right,#384679, #283153); 
+	position: fixed;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	z-index: 1;	
+}
+.landing-page::before{
+     content: "";
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: inherit;
+     height: 100vh;
+     background-image: url("./images/bg-pat.png"); 
+     background-size: cover; 
+     opacity: .4;
+     z-index: -1;
+}
+.logou{
+    margin-right: 50px;
+    margin-top: 50px;
+    position: fixed;
+    right: 0;
+    top : 0;
+}
+
+.container{
+    background-color: rgba(0, 0, 0, 0.4);
+	border: 3px solid #e5eaeb;
+    width: 40%;
+    height: 60%;
+	padding: 4%;
+	padding-top: 2%;
+	border-radius: 10px;
+	margin-left: 30%;
+   
+ 
+	position: fixed;
+}
+
+.pos{
+	position: relative;
+   
+
+
+}

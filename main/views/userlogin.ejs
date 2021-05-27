@@ -2,32 +2,45 @@
 <!doctype html>
 <html>
 <head>
-	<title>Node Authentication</title>
+	<title>Search Room</title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-  
-    <style>
-	</style>
+    <link rel="stylesheet" href="/../uploads/userlogin.css"/> 
+
+	
 </head>
 <body>
-<div class="container">
+  
+    <section class="landing-page">
+        <img src="/../uploads/images/liq-1.png" alt="" class="blob blob-1">
+        <img src="/../uploads/images/liq-2.png" alt="" class="blob blob-2">
+        <img src="/../uploads/images/liq-3.png" alt="" class="blob blob-3 ">
+        <img src="/../uploads/images/liq-6.png" alt="" class="blob blob-4 ">
+    
+    <div class="container">
+        
     <% if (message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
     <% } %>
-	<div class="jumbotron text-center">
-		<h1><span class="fa fa-lock"></span> Authenticate</h1>
+	
+		<h1 style="color: rgba(101, 224, 187, 0.781)"><span class="fa fa-lock"></span><b> Authenticate</b></h1>
+             <br/>
+             <br/>
+             <br/>
         <form action="/room/visiter/<%= visiter %>" method="POST">
             <div class="form-group">
-                <label>Key:</label>
-                <input type="text" class="form-control" name="key">
+                <label style="color: white"><b>Key:</b></label>
+                <input placeholder="Please Enter 12 Digit Room Key Here" type="text" class="form-control" name="key">
             </div>
-            <button type="submit" class="btn btn-warning">Proceeed -> </button>
+            <button type="submit" class="btn btn-outline-success">Proceeed -> </button>
+            <h6 style="color: white">Click On Proceeed to Enter In Room</h6>
         </form>
-	</div>
-    <p>Or go <a href="/">home</a>.</p>
-</div>
-
-
+       <div class="logou">
+      <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+       </div>
+   
+    </div>
+    </section>
 </body>
 </html>
 

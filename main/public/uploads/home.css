@@ -49,7 +49,7 @@ header
 			height: 9%;
 		  /* At the bottom. Use top:0 to append it to the top */
 		background: rgb(107, 219, 214); /* Fallback color */
-		background:#2c2727de; /* Black background with 0.5 opacity */
+		background-color: rgba(0, 0, 0, 0.4); /* Black background with 0.5 opacity */
 		color: #f0d6d6; /* Grey text */
 		opacity: 0.4;
 		width: 100%; /* Full width */
