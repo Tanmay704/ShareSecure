@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt   = require('bcrypt-nodejs');
+require('dotenv').config();
   const  Schema  = mongoose.Schema;
   const adminSchema = new Schema({
     local :{
@@ -11,7 +12,7 @@ const bcrypt   = require('bcrypt-nodejs');
   });
   
   adminSchema.methods.generateHash = function(password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(process.env.SALT), null);
   };
 
   adminSchema.methods.validPassword = function(password) {

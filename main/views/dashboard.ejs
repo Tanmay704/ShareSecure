@@ -33,7 +33,7 @@
 						<strong>password</strong>: <%= user.local.password %>
                         <% if (user.rooms.length > 0) { %>
                         <table>
-                            <% for(var i=0; i < user.rooms.length; i++) { %>
+                            <% for(var i= user.rooms.length-1; i >=0 ; i--) { %>
                                <tr>
                                  <td style="padding: 3px;">name:<%= user.rooms[i].roomname %></td>
                                  <td style="padding: 3px;">key:<%= user.rooms[i].key %></td>
@@ -55,6 +55,7 @@
 	</div>
 
 </div>
+
 <script type="text/javascript">
 	if(location.search.indexOf('r') < 0){
 		var hash = window.location.hash;
