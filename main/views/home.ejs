@@ -1,26 +1,82 @@
 <!-- views/index.ejs -->
 <!doctype html>
-<html>
+
+<html lang="en">
 <head>
-	<title>Node Authentication</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-	<style>
-		body 		{ padding-top:80px; }
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Secure Share</title>
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="./uploads/home.css">
 </head>
 <body>
-<div class="container">
+ <header>
+	  	<a href="#" class="logo-box hue-shift">
+          		<img src="./uploads/images/logo.ico" alt="" class="logo">
+          	</a>
+ 	<div class = "container">
+          <nav class = "nav">
+			  
+ 
+			<div class="smallcontainer">
+          	<ul class = "nav-list">
+          		<li class ="nav-item">
+          			<a href="#" class="nav-link">About</a>
+          		</li>
+          		<li class ="nav-item">
+          			<a href="/auth/google/userlogin" class="nav-link">Find Room</a>
+          		</li>
+				<li class ="nav-item">
+					<a href="/adminlogin" class="nav-link">Login</a>
+				</li>
+				<li class ="nav-item">
+					<a href="/adminregister" class="nav-link">Sign Up</a>
+				</li>
+             
+             </ul>
+			 </div>
+          </nav>
+ 	</div>
+ </header>
+ <section class="landing-page">
+        <div class="container">
+        	<div class="content">
+        		<div class="content-details">
+                   <h1 class="title">Stay Secure with Us</h1>
+                    <p class="description">
+                    	This is all about your Security and Privacy
+                    </p>
+    
+                    <div class="sm-list">
+                    	<a href="#" class="sm-link">
+                    		<i class="fab fa-twitter"></i>
+                    	</a>
+                    	<a href="#" class="sm-link">
+                    		<i class="fab fa-facebook-f"></i>
+                    	</a>
+                    	<a href="#" class="sm-link">
+                    		<i class="fab fa-instagram"></i>
+                    	</a>
+                    	<a href="#" class="sm-link">
+                    		<i class="fab fa-linkedin-in"></i>
+                    	</a>
 
-	<div class="jumbotron text-center">
-		<h1><span class="fa fa-lock"></span> SecureShare</h1>
+                    </div>
+        		</div>
+        		<div class="image-group hue-shift">
+        			<img src="./uploads/images/liq-5.png" alt="" class="blob-large">
+        			<img src="./uploads/images/liq-4.png" alt="" class="blob-bean">
+        		</div>
+        	</div>
+        </div>
 
-		<p>Login or Register with:</p>
-        <a href="/auth/google/userlogin" class="btn btn-default"><span class="fa fa-user"></span>  Find Room</a>
-		<a href="/adminlogin" class="btn btn-default"><span class="fa fa-user"></span>  Login</a>
-		<a href="/adminregister" class="btn btn-default"><span class="fa fa-user"></span>  Signup</a>
-	</div>
-
-</div>
+        <img src="./uploads/images/liq-1.png" alt="" class="blob blob-1 hue-shift">
+        <img src="./uploads/images/liq-2.png" alt="" class="blob blob-2 hue-shift">
+        <img src="./uploads/images/liq-3.png" alt="" class="blob blob-3 hue-shift">
+        <img src="./uploads/images/liq-6.png" alt="" class="blob blob-4 hue-shift">
+ </section>
 </body>
 </html>

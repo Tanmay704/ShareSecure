@@ -33,6 +33,10 @@ db.once("open", function () {
 
 // Middleware
 require("./config/passport")(passport);
+//use css file
+app.use(express.static(__dirname + '/public'));
+
+
 app.use(morgan("dev")); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 //app.use(bodyParser()); // get information from html forms
@@ -43,6 +47,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
+
 
 // routes
 require("./routes/home.js")(app);
