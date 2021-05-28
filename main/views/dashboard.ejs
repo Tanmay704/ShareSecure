@@ -4,59 +4,106 @@
 <!doctype html>
 <html>
 <head>
-	<title>Node Authentication</title>
+	<title>DashBoard</title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 	<style>
 		body 		{ word-wrap:break-word; }
 	</style>
+	  <link rel="stylesheet" href="/../uploads/dashboard.css" />
 </head>
 <body onload =   >
-<div class="container">
 
-	<div class="page-header text-center">
-		<h1><span class="fa fa-anchor"></span> Profile Page</h1>
-		<a href="/logout" class="btn btn-default btn-sm">Logout</a>
-	</div>
+	<div class="float-container">
 
-	<div class="row">
-
-		<!-- LOCAL INFORMATION -->
-		<div class="col-sm-6">
-			<div class="well">
-				<h3><span class="fa fa-user"></span> Local</h3>
-				
-					<p>
-						<strong>id</strong>: <%= user._id %><br>
-						<strong>Username</strong>: <%= user.local.username %><br>
-						<strong>email</strong>: <%= user.local.email %><br>
-						<strong>password</strong>: <%= user.local.password %>
-                        <% if (user.rooms.length > 0) { %>
-                        <table>
-                            <% for(var i= user.rooms.length-1; i >=0 ; i--) { %>
-                               <tr>
-                                 <td style="padding: 3px;">name:<%= user.rooms[i].roomname %></td>
-                                 <td style="padding: 3px;">key:<%= user.rooms[i].key %></td>
-								 <td><a class="btn btn-raised btn-danger" href="/room/delete/<%= user.rooms[i]._id %>/<%= user._id %>?_method=DELETE"
-									onclick="return confirm('Are you sure you want to delete this room ?')">Delete</a> </td>
-									<td><a class="btn btn-raised btn-success " href="/room/view/<%= user.rooms[i]._id %>">Settings</a> </td>
-                                </tr>
-                            <% } %>
-                            </table>
-                            <%} else { %>
-                                <p> NO Room available  </p>
-                            <% } %>
-					</p>
-
-                    <a href="/createroom" class="btn btn-default"><span class="fa fa-lock"></span>  Create Room</a>
+		<div class="float-child1">
+			<h1 style="color : rgba(64, 212, 205, 0.829)"><span class="fa fa-anchor"></span> DashBoard</h1>
+		</div>
+		
+		<div class="float-child2">
+		
+				<a href="/createroom" class="btn btn-default"><span class="fa fa-lock"></span>  Create Room</a>
+		
+	
+		
+		</div>
+		<div class="float-child3">
+			<h3  style="color : rgba(64, 212, 205, 0.829)"><span class="fa fa-user"></span> <small style="color : rgba(64, 212, 205, 0.829)">Hey</small>,Admin</h3>
+		   <h6 style="color : rgba(64, 212, 205, 0.829)">you'r login with,</h6>
+		
+			<h4  style="color : rgba(64, 212, 205, 0.829)"><strong>Username</strong>: <%= user.local.username %><br></h4>
+			<h4  style="color : rgba(64, 212, 205, 0.829)"><strong>Email</strong>: <%= user.local.email %><br></h4>
+			<div class="but">
+			<a href="/logout" class="btn btn-default btn-sm">Logout</a>
 			</div>
+		  </div>
+	
+
 		</div>
 
-	</div>
+	<div class="container">
+	<div class="row">
+		
+		<!-- LOCAL INFORMATION -->
+	
+			<div class="well">
+			
+			
+					
+						<h3><b class = "rooms" style="color: rgb(14, 13, 13);">Rooms : </b></h3>
+						<table class="tab">
+						
+                        <% if (user.rooms.length > 0) { %>
+						
+								<tr>
+									<th style="font-size: 18px;">Room Name</th>
+									<th style="font-size: 18px;">Key</th>
+							       <th style="font-size: 18px;"></th>
+								   <th class="option" style="font-size: 18px;">Options</th>
+								  </tr>
+								<% for(var i= user.rooms.length-1; i >=0 ; i--) { %>
+								   <tr>
+									 <td style="padding: 3px;"><%= user.rooms[i].roomname %></td>
+									 <td style="padding: 3px;" class="keyv"><%= user.rooms[i].key %></td>
+									  
 
+									 <td> <button onclick="copyToClipboard('#text')" id="clipboardCopy" class="clip"> ClipboardCopy </button> </td>
+
+									
+										
+									 <td><a class="btn btn-raised btn-danger" href="/room/delete/<%= user.rooms[i]._id %>/<%= user._id %>?_method=DELETE"
+										onclick="return confirm('Are you sure you want to delete this room ?')">Delete</a> </td>
+										<td><a class="btn btn-raised btn-success " href="/room/view/<%= user.rooms[i]._id %>">Settings</a> </td>
+									</tr>
+								<% } %>
+								</table>
+								<%} else { %>
+									<p> NO Room available  </p>
+								<% } %>
+						</table>
+
+
+			</div>
+
+
+	</div>
 </div>
 
+
 <script type="text/javascript">
+
+function copyToClipboard(element) {
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val($(element).text()).select();
+  document.execCommand("copy");
+  $temp.remove();
+}
+document.getElementById('clipboardCopy').addEventListener('click', clipboardCopy);
+async function clipboardCopy() {
+  let text = document.querySelector(".keyv").innerHTML;
+  await navigator.clipboard.writeText(text);
+}
 	if(location.search.indexOf('r') < 0){
 		var hash = window.location.hash;
 		var loc = window.location.href.replace(hash, '');

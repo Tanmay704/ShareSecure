@@ -1,0 +1,72 @@
+body {
+    background-image: url("./images/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+  
+   }
+   .float-container{
+
+display: flex;
+border-bottom: 5px solid rgba(121, 92, 86, 0.815);
+    padding-bottom: 2%;
+    min-height: 100%;
+    background-color: rgba(0, 0, 0, 0.322);
+   
+   }
+   .float-child1{
+       margin-top: 4%;
+      margin-left: 2%;
+        width: 24%;
+    
+
+        float: left;
+   }
+   .float-child2 {
+    width: 40%;
+    float: left;
+   
+  
+
+}    .float-child3 {
+    width: 30%;
+    float: left;
+
+  
+   
+}  
+.but{
+    margin-left: 85%;
+}
+.tab{
+
+      padding : 4%;
+    width: 100%;
+}
+.well{
+    padding: 3%;
+    margin-top: 3%;
+   margin-left: 2%;
+   margin-right: 2%;
+ background-color: rgba(109, 135, 170, 0.726);
+}
+.clip{
+   margin-left: 0%;
+  
+}
+.btn-danger{
+     margin-left: 20%;
+}
+
+td,th {
+    
+    text-align: left;
+    padding: 8px;
+  }
+  .option{
+      padding-left: 8%;
+  }
+
+.btn-default{
+   margin-top: 31%;
+}
