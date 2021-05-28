@@ -1,81 +1,148 @@
 <!-- views/signup.ejs -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-       
-    </style>
-</head>
-<body>
-<div class="container">
+    <link
+      rel="stylesheet"
+      href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"
+    />
+    <!-- load bootstrap css -->
+    <link
+      rel="stylesheet"
+      href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+    />
+    <!-- load fontawesome -->
+    <link rel="stylesheet" href="./uploads/createRoom.css" />
+    <style></style>
+  </head>
+  <body>
+    <section class="landing-page">
+      <div class="container">
+        <div class="col-sm-9 col-sm-offset-1">
+          <!-- LOGIN FORM -->
 
-<div class="col-sm-6 col-sm-offset-3">
-    <!-- LOGIN FORM -->
+          <p style="font-size: x-large; color: white">
+            <b
+              style="font-size: x-large; color: rgba(101, 224, 187, 0.781)"
+              class="fa fa-user"
+            >
+            <%= user.local.username %> .. creating room<br />
+          </b>
+          </p>
+          <form
+            action="/createroom"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group">
+              <label style="color: white">Room Name: </label>
+              <input
+                type="text"
+                class="form-control"
+                name="roomname"
+                required
+              />
+            </div>
 
-    <p><strong>Username</strong>: <%= user.local.username %> .. creating room<br></p>
-    <form action="/createroom" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            <label>Room Name: </label>
-            <input type="text" class="form-control" name="roomname" required>
+            <div class="form-group">
+              <label style="color: white">Choose File:</label>
+              <input
+                style="color: black; background-color: white"
+                type="file"
+                class="form-control-file"
+                id="file"
+                name="file"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label style="color: white">Discription:</label>
+              <textarea style="height: 5cm;" class="form-control" name="disc" rows="4"></textarea>
+            </div>
+
+            <div style="color: white" class="form-group">
+              <label style="color: white">Visiter Limit:</label>
+              <input
+                type="number"
+                class="form-control"
+                name="limit"
+                min="1"
+                max="1000"
+                style="color: black"
+                placeholder="100"
+              />
+              default is : 100
+            </div>
+
+            <button
+              style="background-color: white; color: black"
+              type="submit"
+              class="btn btn-success"
+            >
+              + Create
+            </button>
+            <br/>
+            <br/>
+            <a style="font-size:small;" class="fa fa-arrow-circle-left" href="/dashboard"> Go Back</a> 
+          </form>
         </div>
+      </div>
 
-        <div class="form-group">
-            <label>Choose File:</label>
-            <input type="file" class="form-control-file" id="file" name = "file"   required>
-        </div>
+      <script>
+        document
+          .getElementById("file")
+          .addEventListener("change", validateFile);
 
+        function validateFile() {
+          const allowedExtensions = ["jpg", "png", "jpeg", "gif", "raw"],
+            sizeLimit = 1000000 * 10; // 1 megabyte
 
-        <div class="form-group">
-            <label>Discription:</label>
-            <textarea class="form-control" name="disc" rows="4"></textarea>
-        </div>
+          // destructuring file name and size from file object
+          const { name: fileName, size: fileSize } = this.files[0];
 
-        <div class="form-group">
-            <label>Visiter Limit:</label>
-            <input type="number" class="form-control" name="limit" min = "1"  max = "1000" placeholder="100" >
-            default is : 100
-        </div>
+          /*
+           * if filename is apple.png, we split the string to get ["apple","png"]
+           * then apply the pop() method to return the file extension
+           *
+           */
+          const fileExtension = fileName.split(".").pop();
 
-        <button type="submit" class="btn btn-success ">+ Create</button>
-    </form>
-</div>
-
-</div>
-
-
-<script>
-    document.getElementById("file").addEventListener("change", validateFile)
-
-function validateFile(){
-  const allowedExtensions =  ['jpg','png','jpeg','gif','raw'],
-        sizeLimit = 1000000 * 10; // 1 megabyte
-
-  // destructuring file name and size from file object
-  const { name:fileName, size:fileSize } = this.files[0];
-
-  /*
-  * if filename is apple.png, we split the string to get ["apple","png"]
-  * then apply the pop() method to return the file extension
-  *
-  */
-  const fileExtension = fileName.split(".").pop();
-
-  /* 
+          /* 
     check if the extension of the uploaded file is included 
     in our array of allowed file extensions
   */
-  if(!allowedExtensions.includes(fileExtension)){
-    alert("file type not allowed");
-    this.value = null;
-  }else if(fileSize > sizeLimit){
-    alert("file size too large")
-    this.value = null;
-  }
-}
-</script>
+          if (!allowedExtensions.includes(fileExtension)) {
+            alert("file type not allowed");
+            this.value = null;
+          } else if (fileSize > sizeLimit) {
+            alert("file size too large");
+            this.value = null;
+          }
+        }
+      </script>
 
-</body>
+      <img
+        src="./uploads/images/liq-1.png"
+        alt=""
+        class="blob blob-1 hue-shift"
+      />
+      <img
+        src="./uploads/images/liq-2.png"
+        alt=""
+        class="blob blob-2 hue-shift"
+      />
+      <img
+        src="./uploads/images/liq-3.png"
+        alt=""
+        class="blob blob-3 hue-shift"
+      />
+      <!-- <img
+        src="./uploads/images/liq-6.png"
+        alt=""
+        class="blob blob-4 hue-shift"
+      /> -->
+    </section>
+  </body>
 </html>

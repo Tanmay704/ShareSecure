@@ -5,10 +5,12 @@
 	<title>Node Authentication</title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <link rel="stylesheet" href="/../uploads/roomupdate.css">
 	<style>
 	</style>
 </head>
 <body>
+<section class="landing-page">
 <div class="container">
         <h3>Update room</h3>
         <form action="/room/update/<%= myroom._id %>" method="post" enctype="multipart/form-data">
@@ -50,11 +52,29 @@
                  current visiters count: <%= myroom.visiters.length %> / <%= myroom.limit %>
             </div>
 
-            <button type="submit" class="btn btn-success ">Applay Changes</button>
+            <button id="button" type="submit" class="btn btn-success ">Apply Changes</button>
         </form>
-    <p>Or go <a href="/">home</a>.</p>
+        <br>
+       <a href="/dashboard">or Go Dashboard</a>
+    
     
   </div>
+  <img
+        src="/../uploads/images/liq-1.png"
+        alt=""
+        class="blob blob-1 hue-shift"
+      />
+      <img
+        src="/../uploads/images/liq-2.png"
+        alt=""
+        class="blob blob-2 hue-shift"
+      />
+      <img
+        src="/../uploads/images/liq-3.png"
+        alt=""
+        class="blob blob-3 hue-shift"
+      />
+</section>
 
 
   <script>

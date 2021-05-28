@@ -69,7 +69,7 @@ header
 	position: fixed;
    right: 0;
 	display: flex;
-
+	
 	list-style: none;
 }
 .nav-item{
@@ -199,6 +199,7 @@ margin : auto;
 	bottom: -24rem;
 }
 .blob-4{
+	opacity: 0.4;
 	left: -21rem;
 	bottom: -17rem;
 }

@@ -1,0 +1,148 @@
+
+body {
+  background-image: url("./images/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+
+ }
+.header
+{
+	position: absolute;
+	top: 0;
+  
+	z-index: 1000;
+	width: 100%;
+   
+}
+.smallcontainer .nav-list{
+	
+	position: fixed; /* Position the background text */
+             top: 1%;
+			
+			 right: 0;
+			height: 18%;
+		  /* At the bottom. Use top:0 to append it to the top */
+		background: rgb(107, 219, 214); /* Fallback color */
+		background-color: rgba(0, 0, 0, 0.4); /* Black background with 0.5 opacity */
+		color: #f1eded; /* Grey text */
+		opacity: 0.6;
+		width: 100%; /* Full width */
+    
+        padding-top:2%; /* Some padding */
+	  
+}
+
+.nav{
+	height: 20rem;
+    
+	display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.nav-list{
+    padding-left: 1%;
+	position: fixed;
+    right: 0;
+	display: flex;
+	font-size: 18px;
+	list-style: none;
+}
+.nav-item1{
+    position: fixed;
+    margin-left: 0;
+	
+}
+.nav-item3{
+    margin-top: 2%;
+    position: fixed;
+    margin-left:67%;
+	
+}
+.nav-item4{
+  position: fixed;
+  margin-left: 67%;
+  margin-top: 5%;
+
+}
+.nav-item5{
+  position: fixed;
+  margin-left: 0;
+
+
+  margin-top: 3%;
+
+}
+.nav-item2{
+    position: fixed;
+    margin-top: -1%;
+    margin-left: 67%;
+	
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+  
+    margin-left: 8%;
+
+    position: relative;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #e4d1d1;
+  }
+  tr:nth-child(odd) {
+    background-color: #8b8787;
+  }
+
+
+.des{
+  
+   font-size: 24px;
+ 
+}
+.sm-list{
+  padding: 3%;
+  margin-top: 12%;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.4);
+
+}
+.fa-arrow-circle-left{
+  padding-left: 2%;
+}
+.btn-sm{
+  margin-inline-start:30%;
+}
+
+.imag{
+  margin-top: -14%;
+  margin-left: 20%;
+  border:rgb(234, 236, 240) solid;
+}
+.tab{
+  position: relative;
+  margin-bottom: 6%;
+  bottom: 0;
+  border:rgb(234, 236, 240) solid;
+}
+
+  .container{
+    margin-top: 4%;
+    margin-bottom: 4%;
+   padding: 2%;
+    background-color: rgba(224, 216, 216, 0.979);
+    border :rgba(255, 252, 252, 0.979) solid;
+  }
+.visit{
+  margin: 4%;
+  margin-left: 10%;
+}

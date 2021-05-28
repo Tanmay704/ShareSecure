@@ -1,30 +1,78 @@
 <!-- views/index.ejs -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-	<title>Node Authentication</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-	<style>
-	</style>
-</head>
-<body>
-<div class="container">
-    <div>
+  <head>
+    <title>Node Authentication</title>
+    <link
+      rel="stylesheet"
+      href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"
+    />
+    <!-- load bootstrap css -->
+    <link
+      rel="stylesheet"
+      href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+    />
+    <!-- load fontawesome -->
+    <link rel="stylesheet" href="/../uploads/room.css" />
+    <style></style>
+  </head>
+  <body>
+
+    
+
+              
+        <nav class = "nav">
+            
+          <div class="smallcontainer">
+            <ul class = "nav-list">
+                <li class ="nav-item1">
+                <b>Room Name</b>: <b><%= myroom.roomname %></b>
+                </li>
+                <li class ="nav-item3">
+                  <b>Admin Email </b>: <%= myroom.admin.local.email %>
+                </li>
+                <li class ="nav-item2">
+                  <b>Admin</b>: <%= myroom.admin.local.username %> %>
+                </li>
+                <li class ="nav-item4">
+                  <b>Created On</b>: <%= myroom.created.toDateString() %>
+                </li>
+                <li class ="nav-item5">
+                 <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+                </li>
+              </ul>
+            </div>
+           </nav>
+
+
+
+
+
+
+
+      <div class="content" id="content">
+        <center>
+          <img
+           style="border: solid; color: white; "
+            src="data:img/<%=img.contentType%>;base64,
+        <%=img.toString('base64')%>"
+            width="70%"
+            height="650"
+            onContextMenu="return false;"
+          />
+        </center>
+      </div>
+      <div   class="container">
         <p>
-            <strong>Room Name</strong>: <%= myroom.roomname %><br>
-            <strong>Discription</strong>: <%= myroom.disc %><br>
-            <strong>Created On</strong>: <%= myroom.created %><br>
-            <strong>Admin of Room</strong>: <%= myroom.admin.local.username %><br>
-            <strong>Admin Email</strong>: <%= myroom.admin.local.email %>
+             <b class = "des" font-size: x-large; color: white;">Discription : </b><b style="font-size: 18px; color: rgb(43, 37, 37);"><%= myroom.disc %></b><br>
         </p>
     </div>
-	<center>
-        <img src="data:img/<%=img.contentType%>;base64,
-        <%=img.toString('base64')%>" width="250" height="300" onContextMenu="return false;">
-
-    <p>Or go <a href="/">home</a>.</p>
-    </center>
-</div>
-</body>
+ 
+          
+      </div>
+    </div>
+      </div>
+  
+     
+  </body>
 </html>
