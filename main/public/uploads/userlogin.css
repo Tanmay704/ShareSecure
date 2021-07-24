@@ -4,6 +4,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+   
 }
 html{
 	font-size: 62.5%;
@@ -15,10 +16,12 @@ html{
 	min-height: 100vh;
 	background-image: linear-gradient(to bottom right,#384679, #283153); 
 	position: fixed;
-	overflow: hidden;
+    
 	display: flex;
 	align-items: center;
 	z-index: 1;	
+   
+  
 }
 .landing-page::before{
      content: "";
