@@ -20,7 +20,7 @@ How to use :
 
 
 How it work :
-  1. When user upload image then it encrypted and then store in database.
+  1. When user upload image then it encrypted and then stored in database.
   2. When viewer access room where image is stored then the encrypted image is decrypted and viewer can see.
 
   
